@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import Image from 'next/image';
+
 interface Mobile {
     id: number;
     name: string;
@@ -190,7 +192,7 @@ export default function MobileList({ mobiles }: { mobiles: Mobile[] }) {
                                         onClick={() => { setSelection(mobile); setSearch(''); }}
                                         className="mobile-list-item"
                                     >
-                                        <img src={mobile.image_url} alt={mobile.name} className="mobile-thumb" />
+                                        <Image src={mobile.image_url} alt={mobile.name} className="mobile-thumb" width={56} height={56} unoptimized />
                                         <div style={{ flex: 1 }}>
                                             <div style={{ fontWeight: 'bold', fontSize: '1.05rem' }}>{mobile.name}</div>
                                             <div style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>{mobile.brand}</div>
@@ -203,7 +205,7 @@ export default function MobileList({ mobiles }: { mobiles: Mobile[] }) {
                             ) : (
                                 <div style={{ textAlign: 'center', color: 'var(--secondary)', padding: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
                                     <span style={{ fontSize: '3rem', opacity: 0.3 }}>📱</span>
-                                    <div>No devices found matching "{search}"</div>
+                                    <div>No devices found matching &quot;{search}&quot;</div>
                                 </div>
                             )}
                         </div>
@@ -221,7 +223,7 @@ export default function MobileList({ mobiles }: { mobiles: Mobile[] }) {
 
                         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
                             <div className="device-image-container">
-                                <img src={selection.image_url} alt={selection.name} className="device-image" />
+                                <Image src={selection.image_url} alt={selection.name} className="device-image" fill style={{ objectFit: 'contain' }} unoptimized />
                             </div>
                             <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', lineHeight: '1.2' }}>{selection.name}</h2>
 
